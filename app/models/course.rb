@@ -16,14 +16,11 @@ class Course < ActiveRecord::Base
     foreign_key: :course_id,
     class_name: :Enrollment
 
-    has_many :users, through: :enrollments
-
-    def enrolled_students
-      users
-    end
+    has_many :enrolled_students, through: :enrollments, source: :user
 
     belongs_to :prerequisite,
       primary_key: :id,
       foreign_key: :prereq_id,
       class_name: "Course"
+
 end
